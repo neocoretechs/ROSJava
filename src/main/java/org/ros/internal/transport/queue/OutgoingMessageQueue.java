@@ -38,7 +38,7 @@ import java.util.concurrent.ExecutorService;
  */
 public class OutgoingMessageQueue<T> {
 
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
   private static final Log log = LogFactory.getLog(OutgoingMessageQueue.class);
 
   private static final int DEQUE_CAPACITY = 16;
@@ -61,8 +61,7 @@ public class OutgoingMessageQueue<T> {
       final ChannelBuffer buffer = messageBufferPool.acquire();
       serializer.serialize(message, buffer);
       if (DEBUG && channelGroup.size() > 0 ) {
-        log.info(String.format("Writing %d bytes to %d channels.", buffer.readableBytes(),
-            channelGroup.size()));
+        log.info(String.format("Writing %d bytes to %d channels.", buffer.readableBytes(), channelGroup.size()));
       }
       // Note that the buffer is automatically "duplicated" by Netty to avoid
       // race conditions. However, the duplicated buffer and the original buffer

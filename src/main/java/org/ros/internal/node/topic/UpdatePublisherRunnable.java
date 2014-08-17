@@ -63,7 +63,10 @@ class UpdatePublisherRunnable<MessageType> implements Runnable {
   public void run() {
     SlaveClient slaveClient;
     try {
+      System.out.println("Attempting to create SlaveClient:"+nodeIdentifier.getName()+" pub:"+publisherIdentifier.getNodeUri());
       slaveClient = new SlaveClient(nodeIdentifier.getName(), publisherIdentifier.getNodeUri());
+      System.out.println("Slave client created "+nodeIdentifier.getName()+" pub:"+publisherIdentifier.getNodeUri());
+      System.out.println("Requesting topic name "+subscriber.getTopicName());
       Response<ProtocolDescription> response =
           slaveClient.requestTopic(subscriber.getTopicName(), ProtocolNames.SUPPORTED);
       // TODO(kwc): all of this logic really belongs in a protocol handler

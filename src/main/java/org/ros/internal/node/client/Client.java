@@ -41,7 +41,7 @@ abstract class Client<T extends XmlRpcEndpoint> {
   // strategy.
   private static final int CONNECTION_TIMEOUT = 60 * 1000; // 60 seconds
   private static final int REPLY_TIMEOUT = 60 * 1000; // 60 seconds
-  private static final int XMLRPC_TIMEOUT = 10 * 1000; // 10 seconds
+  private static final int XMLRPC_TIMEOUT = 30 * 1000; // 30 seconds
 
   private final URI uri;
 
