@@ -27,6 +27,8 @@ import org.ros.node.NodeConfiguration;
 import org.ros.node.NodeMain;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -236,6 +238,15 @@ public class CommandLineLoader {
   public NodeMain loadClass(String name) throws ClassNotFoundException, InstantiationException,
       IllegalAccessException {
     Class<?> clazz = getClass().getClassLoader().loadClass(name);
+    Method meth = null;
+    if( clazz.getConstructors().length == 0 ) { // no public constructors, lets try to get the singleton instance
+    	try {
+			meth = clazz.getMethod("getInstance",(Class<?>[])null);
+		   	return NodeMain.class.cast(meth.invoke(null, (Object[])null));
+		} catch (NoSuchMethodException | SecurityException | IllegalArgumentException | InvocationTargetException e) {
+			throw new InstantiationException(e.getMessage());
+		}
+    }
     return NodeMain.class.cast(clazz.newInstance());
   }
 }

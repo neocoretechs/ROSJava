@@ -118,9 +118,9 @@ public class TopicParticipantManager {
   }
 
   public void addSubscriberConnection(DefaultSubscriber<?> subscriber, PublisherIdentifier publisherIdentifier) {
-	  log.info("sub:"+subscriber+" pub:"+publisherIdentifier);
+	  //log.info("sub:"+subscriber+" pub:"+publisherIdentifier);
 	  List<PublisherIdentifier> pubs = subscriberConnections.get(subscriber);
-	  for(PublisherIdentifier p: pubs) log.info("Pub: "+p);
+	  //for(PublisherIdentifier p: pubs) log.info("Pub: "+p);
 	  assert(pubs != null);
 	  if( pubs.contains(publisherIdentifier))
 		  return;
