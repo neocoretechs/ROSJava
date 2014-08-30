@@ -156,8 +156,9 @@ public class DefaultPublisher<T> extends DefaultTopicParticipant implements Publ
   public ChannelBuffer finishHandshake(ConnectionHeader incomingHeader) {
     ConnectionHeader topicDefinitionHeader = getTopicDeclarationHeader();
     if (DEBUG) {
-      log.info("Subscriber handshake header: " + incomingHeader);
-      log.info("Publisher handshake header: " + topicDefinitionHeader);
+      //log.info("Subscriber handshake header: " + incomingHeader);
+      //log.info("Publisher handshake header: " + topicDefinitionHeader);
+    	log.info("%%%%%%%%%%%%%%%% Handshake Complete %%%%%%%%%%%%%%%");
     }
     // TODO(damonkohler): Return errors to the subscriber over the wire.
     String incomingType = incomingHeader.getField(ConnectionHeaderFields.TYPE);

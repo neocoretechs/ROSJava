@@ -87,13 +87,21 @@ public class SubscriberIdentifier {
     if (nodeIdentifier == null) {
       if (other.nodeIdentifier != null)
         return false;
-    } else if (!nodeIdentifier.equals(other.nodeIdentifier))
-      return false;
+    } else { // node id != null
+    	if( other.nodeIdentifier == null )
+    		return false;
+    	if (!nodeIdentifier.equals(other.nodeIdentifier))
+    			return false;
+    }
     if (topicIdentifier == null) {
       if (other.topicIdentifier != null)
         return false;
-    } else if (!topicIdentifier.equals(other.topicIdentifier))
-      return false;
+    } else { // topicId != null
+    	if( other.topicIdentifier == null )
+    		return false;
+    	if (!topicIdentifier.equals(other.topicIdentifier))
+    		return false;
+    }
     return true;
   }
 }

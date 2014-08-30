@@ -123,13 +123,21 @@ public class NodeIdentifier {
     if (name == null) {
       if (other.name != null)
         return false;
-    } else if (!name.equals(other.name))
-      return false;
+    } else { // name != null
+    	if( other.name == null )
+    		return false;
+    	if (!name.equals(other.name))
+    		return false;
+    }
     if (uri == null) {
       if (other.uri != null)
         return false;
-    } else if (!uri.equals(other.uri))
-      return false;
+    } else { // uri != null
+    	if( other.uri == null )
+    		return false;
+    	if (!uri.equals(other.uri))
+    		return false;
+    }
     return true;
   }
 }
